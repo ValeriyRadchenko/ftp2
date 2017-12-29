@@ -6,20 +6,26 @@ const options = {
     host: '127.0.0.1',
     port: 2121
 };
-let socketManager = new SocketManager(options, logger);
+const socketManagers = [];
 
 const beforeEachHelper = () => {
 
 };
 
-const afterEachHelper = async function() {
-    this.timeout(10000);
-    await socketManager.finish();
-    return socketManager = new SocketManager(options, logger);
+const afterHelper = async function() {
+    for (const socketManager of socketManagers) {
+        await socketManager.finish();
+    }
+};
+
+const getSocketManager = () => {
+    const socketManager = new SocketManager(options, logger);
+    socketManagers.push(socketManager);
+    return socketManager;
 };
 
 module.exports = {
     beforeEachHelper,
-    afterEachHelper,
-    socketManager
+    afterHelper,
+    getSocketManager
 };
