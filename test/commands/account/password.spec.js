@@ -2,16 +2,18 @@ const chai = require('chai');
 const expect = chai.expect;
 const helper = require('../../helper');
 const { Password } = require('../../../lib/commands');
+const consts = require('../../../lib/consts');
 
 describe('PASS command', () => {
 
-    it('should receive answer ok', async function () {
+    it('should receive LOGIN_SUCCESSFUL answer', async function () {
         const socketManager = helper.getSocketManager();
         await socketManager.commandConnect();
-        await new Password(socketManager, 'test').send();
+        const answer = await new Password(socketManager, 'test').send();
+        expect(answer.code).to.be.equal(consts.LOGIN_SUCCESSFUL);
     });
 
-    it('should throw Authentication failed.', async function () {
+    it('should throw Authentication failed', async function () {
         const socketManager = helper.getSocketManager();
         await socketManager.commandConnect();
         try {

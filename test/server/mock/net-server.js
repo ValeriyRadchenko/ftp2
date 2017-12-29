@@ -1,17 +1,6 @@
 const net = require('net');
-const commadMap = {
-    'USER' : {
-        condition: 'test',
-        success: '331 Username OK',
-        fail: '331 Username OK'
-    },
-    'PASS': {
-        condition: 'test',
-        success: '230 Login successful.',
-        fail: '530 Authentication failed.'
-    },
-    'fail': '500 FAIL'
-};
+const commandMap = require('./settings.json');
+
 class NetServer {
     constructor(options) {
         this.options = {
@@ -26,15 +15,22 @@ class NetServer {
     onConnection(connection) {
         connection.write('220 Welcome' + '\r\n');
         connection.on('data', chunk => {
-            const data = chunk.toString()
+            let data = chunk.toString()
                 .replace('\r\n', '')
                 .trim()
                 .match(/^([^ ]+) (.+)$/);
 
+            if (!data) {
+                data = chunk.toString()
+                    .replace('\r\n', '')
+                    .trim()
+                    .match(/^([^ ]+)$/);
+            }
+
             if (data) {
-                const command = data[1];
-                const params = data[2];
-                const map = commadMap[command.toUpperCase()];
+                const command = data[ 1 ];
+                const params = data[ 2 ] || null;
+                const map = commandMap[ command.toUpperCase() ];
 
                 if (map.condition === params) {
                     connection.write(map.success + '\r\n');
@@ -43,7 +39,7 @@ class NetServer {
                 }
 
             } else {
-                connection.write(commadMap.fail + '\r\n');
+                connection.write(commandMap.fail + '\r\n');
             }
         });
         this.connections.push(connection);

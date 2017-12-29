@@ -1,0 +1,31 @@
+{
+  "USER" : {
+    "condition": "test",
+    "success": "331 Username OK"
+  },
+  "PASS": {
+    "condition": "test",
+    "success": "230 Login successful.",
+    "fail": "530 Authentication failed."
+  },
+  "CWD": {
+    "condition": "home/test",
+    "success": "250 /home/test is the current directory.",
+    "fail": "550 Unable to get bucket on path /home/wrong_dir."
+  },
+  "MODE": {
+    "condition": "S",
+    "success": "200 Transfer mode set to: S.",
+    "fail": "501 Unrecognized MODE type."
+  },
+  "QUIT": {
+    "condition": null,
+    "success": "221 Goodbye."
+  },
+  "TYPE": {
+    "condition": "I",
+    "success": "200 Type set to: Binary.",
+    "fail": "504 Unsupported type \"P\"."
+  },
+  "fail": "500 FAIL"
+}

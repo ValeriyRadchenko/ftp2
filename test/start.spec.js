@@ -4,12 +4,12 @@ const helper = require('./helper');
 const netServer = new NetServer();
 
 before(async function () {
-    this.timeout(100000);
+    this.timeout(10000);
     await netServer.start();
 });
 
 after(async function () {
-    this.timeout(100000);
+    this.timeout(10000);
     await helper.afterHelper();
     await netServer.stop();
 });

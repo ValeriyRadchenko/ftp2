@@ -13,9 +13,10 @@ const beforeEachHelper = () => {
 };
 
 const afterHelper = async function() {
-    for (const socketManager of socketManagers) {
-        await socketManager.finish();
-    }
+    await Promise.all(
+        socketManagers
+            .map(socketManager => socketManager.finish())
+    );
 };
 
 const getSocketManager = () => {
