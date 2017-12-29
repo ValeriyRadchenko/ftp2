@@ -3,7 +3,7 @@ const { User } = require('../../../lib/commands');
 
 const socketManager = helper.socketManager;
 
-beforeEach(helper.beforeEachHelper('test', '331 Username OK'));
+// beforeEach(helper.beforeEachHelper('test', '331 Username OK'));
 afterEach(helper.afterEachHelper);
 
 describe('USER command', () => {
