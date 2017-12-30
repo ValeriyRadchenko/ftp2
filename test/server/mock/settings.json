@@ -1,31 +1,54 @@
 {
-  "USER" : {
-    "condition": "test",
-    "success": "331 Username OK"
-  },
-  "PASS": {
-    "condition": "test",
-    "success": "230 Login successful.",
-    "fail": "530 Authentication failed."
-  },
-  "CWD": {
-    "condition": "home/test",
-    "success": "250 /home/test is the current directory.",
-    "fail": "550 Unable to get bucket on path /home/wrong_dir."
-  },
-  "MODE": {
-    "condition": "S",
-    "success": "200 Transfer mode set to: S.",
-    "fail": "501 Unrecognized MODE type."
-  },
-  "QUIT": {
-    "condition": null,
-    "success": "221 Goodbye."
-  },
-  "TYPE": {
-    "condition": "I",
-    "success": "200 Type set to: Binary.",
-    "fail": "504 Unsupported type \"P\"."
+  "commands": {
+    "USER" : {
+      "const": "USERNAME_OK",
+      "class": "User",
+      "successParam": "test",
+      "condition": "test",
+      "success": "331 Username OK"
+    },
+    "PASS": {
+      "const": "LOGIN_SUCCESSFUL",
+      "class": "Password",
+      "successParam": "test",
+      "failParam": "wrong password",
+      "condition": "test",
+      "success": "230 Login successful.",
+      "fail": "530 Authentication failed."
+    },
+    "CWD": {
+      "const": "WORKING_DIRECTORY_SET",
+      "class": "ChangeWorkingDirectory",
+      "successParam": "home/test",
+      "failParam": "home/wrong_dir",
+      "condition": "home/test",
+      "success": "250 /home/test is the current directory.",
+      "fail": "550 Unable to get bucket on path /home/wrong_dir."
+    },
+    "MODE": {
+      "const": "TRANSFER_MODE_SET",
+      "class": "Mode",
+      "successParam": "S",
+      "failParam": "P",
+      "condition": "S",
+      "success": "200 Transfer mode set to: S.",
+      "fail": "501 Unrecognized MODE type."
+    },
+    "QUIT": {
+      "const": "GOODBYE",
+      "class": "Quit",
+      "condition": null,
+      "success": "221 Goodbye."
+    },
+    "TYPE": {
+      "const": "TRANSFER_MODE_SET",
+      "class": "Type",
+      "successParam": "I",
+      "failParam": "P",
+      "condition": "I",
+      "success": "200 Type set to: Binary.",
+      "fail": "504 Unsupported type P."
+    }
   },
   "fail": "500 FAIL"
 }

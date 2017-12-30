@@ -30,12 +30,12 @@ class NetServer {
             if (data) {
                 const command = data[ 1 ];
                 const params = data[ 2 ] || null;
-                const map = commandMap[ command.toUpperCase() ];
+                const map = commandMap.commands[ command.toUpperCase() ];
 
                 if (map.condition === params) {
                     connection.write(map.success + '\r\n');
                 } else {
-                    connection.write(map.fail + '\r\n');
+                    connection.write(commandMap.fail + '\r\n');
                 }
 
             } else {
