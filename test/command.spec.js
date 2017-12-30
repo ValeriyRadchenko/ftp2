@@ -25,7 +25,11 @@ describe('Commands', () => {
                     try {
                         await new commands[value.class](socketManager, value.failParam).send();
                     } catch (error) {
-                        expect(error).to.be.equal(`Code does not match ${value.const}`);
+                        if (value.failMessage) {
+                            expect(error).to.be.equal(value.failMessage);
+                        } else {
+                            expect(error).to.be.equal(`Code does not match ${value.const}`);
+                        }
                     }
                 });
             }

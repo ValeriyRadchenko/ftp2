@@ -48,6 +48,63 @@
       "condition": "I",
       "success": "200 Type set to: Binary.",
       "fail": "504 Unsupported type P."
+    },
+    "AUTH": {
+      "const": "AUTH_SUCCESSFUL",
+      "class": "Auth",
+      "successParam": "TLS",
+      "failParam": "wrong param",
+      "condition": "TLS",
+      "success": "234 AUTH TLS successful.",
+      "fail": "502 Unrecognized encryption type (use TLS or SSL)."
+    },
+    "PBSZ": {
+      "const": "TRANSFER_MODE_SET",
+      "class": "ProtectionBufferSize",
+      "successParam": "0",
+      "failParam": "wrong param",
+      "condition": "0",
+      "success": "200 Buffer size set to 0",
+      "fail": "503 Buffer is not allowed."
+    },
+    "PROT": {
+      "const": "TRANSFER_MODE_SET",
+      "class": "ProtectionLevel",
+      "successParam": "P",
+      "failParam": "wrong param",
+      "condition": "P",
+      "success": "200 Protection level set to 0",
+      "fail": "503 Protection level is not allowed."
+    },
+    "LIST": {
+      "const": "FILE_STATUS_OK",
+      "class": "List",
+      "successParam": "home/test",
+      "failParam": "home/wrong_dir",
+      "failMessage": "Code does not match FILE_STATUS_OK, DATA_CONNECTION_ALREADY_OPENED",
+      "condition": "home/test",
+      "success": "150 File status okay. About to open data connection.",
+      "fail": "550 Unable to get bucket on path /home/wrong_dir."
+    },
+    "RETR": {
+      "const": "FILE_STATUS_OK",
+      "class": "Retrieve",
+      "successParam": "home/test",
+      "failParam": "home/wrong_dir",
+      "failMessage": "Code does not match FILE_STATUS_OK, DATA_CONNECTION_ALREADY_OPENED",
+      "condition": "home/test",
+      "success": "150 File status okay. About to open data connection.",
+      "fail": "550 Unable to get bucket on path /home/wrong_dir."
+    },
+    "STOR": {
+      "const": "FILE_STATUS_OK",
+      "class": "Store",
+      "successParam": "home/test",
+      "failParam": "home/wrong_dir",
+      "failMessage": "Code does not match FILE_STATUS_OK, DATA_CONNECTION_ALREADY_OPENED",
+      "condition": "home/test",
+      "success": "150 File status okay. About to open data connection.",
+      "fail": "550 Unable to get bucket on path /home/wrong_dir."
     }
   },
   "fail": "500 FAIL"
