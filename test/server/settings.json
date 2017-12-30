@@ -1,0 +1,150 @@
+{
+  "commands": {
+    "USER": {
+      "const": "USERNAME_OK",
+      "class": "User",
+      "successParam": "test",
+      "condition": [
+        "test",
+        "anonymous"
+      ],
+      "success": "331 Username OK",
+      "checkDefaultValue": true
+    },
+    "PASS": {
+      "const": "LOGIN_SUCCESSFUL",
+      "class": "Password",
+      "successParam": "test",
+      "failParam": "wrong password",
+      "condition": [
+        "test",
+        "anonymous"
+      ],
+      "success": "230 Login successful.",
+      "fail": "530 Authentication failed.",
+      "checkDefaultValue": true
+    },
+    "CWD": {
+      "const": "WORKING_DIRECTORY_SET",
+      "class": "ChangeWorkingDirectory",
+      "successParam": "home/test",
+      "failParam": "home/wrong_dir",
+      "condition": [
+        "home/test",
+        null
+      ],
+      "success": "250 /home/test is the current directory.",
+      "fail": "550 Unable to get bucket on path /home/wrong_dir.",
+      "checkDefaultValue": true
+    },
+    "MODE": {
+      "const": "TRANSFER_MODE_SET",
+      "class": "Mode",
+      "successParam": "S",
+      "failParam": "P",
+      "condition": "S",
+      "success": "200 Transfer mode set to: S.",
+      "fail": "501 Unrecognized MODE type.",
+      "checkDefaultValue": true
+    },
+    "QUIT": {
+      "const": "GOODBYE",
+      "class": "Quit",
+      "condition": null,
+      "success": "221 Goodbye."
+    },
+    "TYPE": {
+      "const": "TRANSFER_MODE_SET",
+      "class": "Type",
+      "successParam": "I",
+      "failParam": "P",
+      "condition": "I",
+      "success": "200 Type set to: Binary.",
+      "fail": "504 Unsupported type P.",
+      "checkDefaultValue": true
+    },
+    "AUTH": {
+      "const": "AUTH_SUCCESSFUL",
+      "class": "Auth",
+      "successParam": "TLS",
+      "failParam": "wrong param",
+      "condition": [
+        "TLS",
+        "SSL"
+      ],
+      "success": "234 AUTH TLS successful.",
+      "fail": "502 Unrecognized encryption type (use TLS or SSL).",
+      "checkDefaultValue": true
+    },
+    "PBSZ": {
+      "const": "TRANSFER_MODE_SET",
+      "class": "ProtectionBufferSize",
+      "successParam": "0",
+      "failParam": "wrong param",
+      "condition": "0",
+      "success": "200 Buffer size set to 0",
+      "fail": "503 Buffer is not allowed.",
+      "checkDefaultValue": true
+    },
+    "PROT": {
+      "const": "TRANSFER_MODE_SET",
+      "class": "ProtectionLevel",
+      "successParam": "P",
+      "failParam": "wrong param",
+      "condition": "P",
+      "success": "200 Protection level set to 0",
+      "fail": "503 Protection level is not allowed.",
+      "checkDefaultValue": true
+    },
+    "LIST": {
+      "const": "FILE_STATUS_OK",
+      "class": "List",
+      "successParam": "home/test",
+      "failParam": "home/wrong_dir",
+      "failMessage": "Code does not match FILE_STATUS_OK, DATA_CONNECTION_ALREADY_OPENED",
+      "condition": [
+        "home/test",
+        null
+      ],
+      "success": "150 File status okay. About to open data connection.",
+      "fail": "550 Unable to get bucket on path /home/wrong_dir.",
+      "checkDefaultValue": true
+    },
+    "RETR": {
+      "const": "FILE_STATUS_OK",
+      "class": "Retrieve",
+      "successParam": "home/test",
+      "failParam": "home/wrong_dir",
+      "failMessage": "Code does not match FILE_STATUS_OK, DATA_CONNECTION_ALREADY_OPENED",
+      "condition": [
+        "home/test",
+        null
+      ],
+      "success": "150 File status okay. About to open data connection.",
+      "fail": "550 Unable to get bucket on path /home/wrong_dir.",
+      "checkDefaultValue": true
+    },
+    "STOR": {
+      "const": "FILE_STATUS_OK",
+      "class": "Store",
+      "successParam": "home/test",
+      "failParam": "home/wrong_dir",
+      "failMessage": "Code does not match FILE_STATUS_OK, DATA_CONNECTION_ALREADY_OPENED",
+      "condition": [
+        "home/test",
+        null
+      ],
+      "success": "150 File status okay. About to open data connection.",
+      "fail": "550 Unable to get bucket on path /home/wrong_dir.",
+      "checkDefaultValue": true
+    }
+  },
+  "mode": {
+    "PASV": {
+      "condition": null,
+      "success": "",
+      "fail": ""
+    }
+  },
+  "fail": "500 FAIL"
+}
