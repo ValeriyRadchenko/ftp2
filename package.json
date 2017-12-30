@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "nyc mocha ./test/**/*.spec.js",
+    "e2e": "mocha ./e2e/**/*.e2e.js",
     "server": "java -jar ./test/server/PortableFTPServer.jar 2121 test test ./lib"
   },
   "keywords": [
