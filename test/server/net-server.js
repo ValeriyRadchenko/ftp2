@@ -30,9 +30,15 @@ class NetServer {
             if (data) {
                 const command = data[ 1 ];
                 const params = data[ 2 ] || null;
+
+                if (command === 'PASV' || this.passiveMode) {
+                    this.passiveMode = true;
+                    this.passive(connection);
+                    return;
+                }
                 const map = commandMap.commands[ command.toUpperCase() ];
 
-                if (map.condition === params) {
+                if ( (Array.isArray(map.condition) && map.condition.indexOf(params) > -1 ) || map.condition === params) {
                     connection.write(map.success + '\r\n');
                 } else {
                     connection.write(commandMap.fail + '\r\n');
@@ -43,6 +49,29 @@ class NetServer {
             }
         });
         this.connections.push(connection);
+    }
+
+    passive(connection) {
+        connection.removeAllListeners('data');
+        connection.on('data', chunk => {
+            let data = chunk.toString()
+                .replace('\r\n', '')
+                .trim()
+                .match(/^([^ ]+) (.+)$/);
+
+            if (!data) {
+                data = chunk.toString()
+                    .replace('\r\n', '')
+                    .trim()
+                    .match(/^([^ ]+)$/);
+            }
+
+            if (data) {
+                const command = data[ 1 ];
+                const params = data[ 2 ] || null;
+            }
+            this.passiveMode = false;
+        });
     }
 
     start() {

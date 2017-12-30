@@ -3,7 +3,7 @@ const expect = chai.expect;
 const helper = require('./helper');
 const commands = require('../lib/commands/index');
 const consts = require('../lib/consts');
-const settings = require('./server/mock/settings.json');
+const settings = require('./server/settings.json');
 
 describe('Commands', () => {
     for (const command in settings.commands) {
@@ -14,6 +14,15 @@ describe('Commands', () => {
                     const socketManager = helper.getSocketManager();
                     await socketManager.commandConnect();
                     const answer = await new commands[value.class](socketManager, value.successParam).send();
+                    expect(answer.code).to.be.equal(consts[value.const]);
+                });
+            }
+
+            if (value.checkDefaultValue) {
+                it(`should receive ${value.const} answer using default value`, async function () {
+                    const socketManager = helper.getSocketManager();
+                    await socketManager.commandConnect();
+                    const answer = await new commands[value.class](socketManager).send();
                     expect(answer.code).to.be.equal(consts[value.const]);
                 });
             }

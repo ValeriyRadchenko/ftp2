@@ -4,7 +4,7 @@
   "description": "Javascript FTP protocol implementation",
   "main": "index.js",
   "scripts": {
-    "test": "mocha ./test/**/*.spec.js",
+    "test": "nyc mocha ./test/**/*.spec.js",
     "server": "java -jar ./test/server/PortableFTPServer.jar 2121 test test ./lib"
   },
   "keywords": [
@@ -14,6 +14,7 @@
   "license": "ISC",
   "devDependencies": {
     "chai": "^4.1.2",
-    "mocha": "^4.0.1"
+    "mocha": "^4.0.1",
+    "nyc": "^11.4.1"
   }
 }

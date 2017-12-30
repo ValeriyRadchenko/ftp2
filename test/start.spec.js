@@ -1,4 +1,4 @@
-const NetServer = require('./server/mock/net-server');
+const NetServer = require('./server/net-server');
 const helper = require('./helper');
 
 const netServer = new NetServer();
